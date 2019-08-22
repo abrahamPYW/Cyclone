@@ -76,7 +76,7 @@
           <q-tr slot="body" slot-scope="props" :props="props" class="text-center">
             <q-td key="id" class="text-center">{{ props.row.id }}</q-td>
             <q-td key="name" class="text-center">{{ props.row.name }}</q-td>
-            <q-td key="participant" class="text-center">{{ props.row.participant }}</q-td>
+            <q-td key="participant_details" class="text-center">{{ props.row.participant_details.name }}</q-td>
             <q-td key="from" class="text-center">{{ props.row.from_km }}</q-td>
             <q-td key="too" class="text-center">{{ props.row.to_km }}</q-td>
             <q-td key="price" class="text-center">{{ props.row.price }}</q-td>
@@ -135,8 +135,8 @@ export default {
         align: "center"
       },
       {
-        name: "participant",
-        field: "participant",
+        name: "participant_details",
+        field: "participant_details.name",
         label: "Participante",
         align: "center"
       },

@@ -49,7 +49,7 @@
         >
           <q-tr slot="body" slot-scope="props" :props="props" class="text-center">
             <q-td key="id" class="text-center">{{ props.row.id }}</q-td>
-            <q-td key="participant" class="text-center">{{ props.row.participant }}</q-td>
+            <q-td key="participant" class="text-center">{{ props.row.participant_details.name }}</q-td>
             <q-td key="started" class="text-center">{{ props.row.started }}</q-td>
             <q-td key="finished" class="text-center">{{ props.row.finished }}</q-td>
             <q-td key="delete" class="text-center">
