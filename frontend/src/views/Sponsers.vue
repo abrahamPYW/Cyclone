@@ -27,37 +27,32 @@
           />
         </div>
         <div class="col-2">
-          <q-input 
+          <q-input
             :error="$v.form.maximum.$error"
             error-message="Favor de introducir el maximo que el Patrocinador desea pagar!"
             bottom-slots
-            v-model="form.maximum" label="Maximo" />
+            v-model="form.maximum"
+            label="Maximo"
+          />
         </div>
       </div>
       <div class="row q-gutter-md">
         <div class="col">
-          <q-input 
-            :error="$v.form.from_km.$error"
-            error-message="Favor de introducir el km de Partida"
-            bottom-slots
-            v-model="form.from_km" label="Desde el Km:" />
-        </div>
-        <div class="col">
-          <q-input 
-            :error="$v.form.to_km.$error"
-            error-message="Favor de introducir el km de llegada"
-            bottom-slots
-            v-model="form.to_km" label="Hasta el Km" />
-        </div>
-        <div class="col">
-          <q-input 
+          <q-input
             :error="$v.form.price.$error"
             error-message="Favor de introducir el Precio"
             bottom-slots
-            v-model="form.price" label="Precio" />
+            v-model="form.price"
+            label="Precio"
+          />
         </div>
         <div class="col q-pt-md text-center">
-          <q-checkbox v-model="form.definite" true-value="True" false-value="False" label="Precio Fijo?" />
+          <q-checkbox
+            v-model="form.definite"
+            true-value="True"
+            false-value="False"
+            label="Precio Fijo?"
+          />
         </div>
         <div class="col q-pt-md text-center">
           <q-btn round flat color="positive" icon="fas fa-save" @click="Add" />
@@ -76,13 +71,14 @@
           <q-tr slot="body" slot-scope="props" :props="props" class="text-center">
             <q-td key="id" class="text-center">{{ props.row.id }}</q-td>
             <q-td key="name" class="text-center">{{ props.row.name }}</q-td>
-            <q-td key="participant_details" class="text-center">{{ props.row.participant_details.name }}</q-td>
-            <q-td key="from" class="text-center">{{ props.row.from_km }}</q-td>
-            <q-td key="too" class="text-center">{{ props.row.to_km }}</q-td>
+            <q-td
+              key="participant_details"
+              class="text-center"
+            >{{ props.row.participant_details.name }}</q-td>
             <q-td key="price" class="text-center">{{ props.row.price }}</q-td>
             <q-td key="maximum" class="text-center">{{ props.row.maximum }}</q-td>
             <q-td key="definite" class="text-center" v-if="props.row.definite == 1">Fijo</q-td>
-            <q-td key="definite" class="text-center" v-else >Normal</q-td>
+            <q-td key="definite" class="text-center" v-else>Normal</q-td>
             <q-td key="delete" class="text-center">
               <q-btn
                 round
@@ -141,18 +137,6 @@ export default {
         align: "center"
       },
       {
-        name: "too",
-        field: "to_km",
-        label: "Desde",
-        align: "center"
-      },
-      {
-        name: "from",
-        field: "from_km",
-        label: "Hasta",
-        align: "center"
-      },
-      {
         name: "price",
         label: "Precio",
         field: "price",
@@ -184,8 +168,6 @@ export default {
       name: { required },
       participant: { required },
       maximum: { required },
-      to_km: { required },
-      from_km: { required },
       price: { required }
     }
   },
@@ -231,6 +213,8 @@ export default {
         });
         return;
       }
+      this.form.from_km = 0;
+      this.form.to_km = 200;
       this.form.participant = this.form.participant.id;
       Axios.post("http://localhost:8000/sponsers/", this.form).then(res => {
         this.GET_Sponsers();
@@ -239,19 +223,21 @@ export default {
       });
     },
     Delete(sponser) {
-        this.$q.dialog({
-            title: "Eliminar Patrocinio",
-            message: "Desea eliminar el Patrocinio: " + sponser.id,
-            color: "negative",
-            ok: "Eliminar",
-            cancel: "Cancelar"
+      this.$q
+        .dialog({
+          title: "Eliminar Patrocinio",
+          message: "Desea eliminar el Patrocinio: " + sponser.id,
+          color: "negative",
+          ok: "Eliminar",
+          cancel: "Cancelar"
         })
         .onOk(res => {
-            Axios.delete("http://localhost:8000/sponsers/" + sponser.id + "/")
-            .then(res => {
-                this.GET_Sponsers()
-            })
-        })
+          Axios.delete(
+            "http://localhost:8000/sponsers/" + sponser.id + "/"
+          ).then(res => {
+            this.GET_Sponsers();
+          });
+        });
     }
   },
   created() {
