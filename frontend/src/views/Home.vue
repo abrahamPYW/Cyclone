@@ -1,18 +1,22 @@
 <template>
   <q-page>
     <div class="text-center q-pt-xl" style="padding-top: 5%">
-      <i class="q-pa-md q-gutter-md text-primary">
+      <i class="q-pa-md q-gutter-md text-info">
+        <i class="text-h3">Drivers:</i>
+        <i class="text-h3 text-bold">{{ expected.drivers }}</i>
+      </i>
+      <div class="q-pa-md q-gutter-md text-info">
         <i class="text-h3">Sponsers:</i>
         <i class="text-h3 text-bold">{{ expected.sonponsers }}</i>
-      </i>
-      <div class="q-pa-md q-gutter-md text-primary">
-        <i class="text-h3">Total:</i>
+      </div>
+      <div class="q-pa-md q-gutter-md text-info">
+        <i class="text-h3">Total Fijo:</i>
         <i class="text-h3 text-bold">{{ expected.definite | currency }}</i>
       </div>
-      <i class="q-pa-md q-gutter-md text-primary">
-        <i class="text-h3">Km:</i>
+      <div class="q-pa-md q-gutter-md text-info">
+        <i class="text-h3">Precio x KM:</i>
         <i class="text-h3 text-bold">{{ expected.Km | currency }}</i>
-      </i>
+      </div>
     </div>
     <q-separator style="margin-top: 10%" />
     <div class="text-center q-pt-xl" style="padding-top: 5%">
