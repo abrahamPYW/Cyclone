@@ -14,11 +14,11 @@
         <tbody>
           <tr v-for="dat in data.sponsers" :key="dat.id">
             <td>{{ dat.sponser }}</td>
-            <td class="text-right">{{ dat.total }}</td>
+            <td class="text-right">{{ format(dat.total) }}</td>
           </tr>
           <tr class="text-bold">
             <td>Total a Pagar</td>
-            <td class="text-right">{{ '$ ' + data.total }}</td>
+            <td class="text-right">{{ '$ ' + format(data.total) }}</td>
           </tr>
           <tr class="text-bold">
             <td>Total Manejado</td>
@@ -26,12 +26,12 @@
           </tr>
           <tr class="text-bold">
             <td>Total Precio Fijo</td>
-            <td  class="text-right" v-if="data.definite > 0">{{ data.definite }}</td>
+            <td  class="text-right" v-if="data.definite > 0">{{ '$ ' + format(data.definite) }}</td>
             <td  class="text-right" v-else>$ 0.00</td>
           </tr>
           <tr class="text-bold">
             <td>Total Precio por KM</td>
-            <td class="text-right">{{ '$ ' + data.price_x_km }}</td>
+            <td class="text-right">{{ '$ ' + format(data.price_x_km) }}</td>
           </tr>
         </tbody>
       </q-markup-table>
@@ -48,6 +48,15 @@ export default {
     data: [],
     driver: {}
   }),
+  methods: {
+    format(val) {
+      let sum = 0
+      if (val > 0) {
+        sum = val.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+      }
+      return sum
+    }
+  },
   created() {
     this.$root.$on("Info", obj => {
       this.opened = true
