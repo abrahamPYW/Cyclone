@@ -66,7 +66,6 @@
           :columns="columns"
           row-key="id"
           :filter="filter"
-          :pagination="{rowsPerPage: 500}"
         >
           <q-tr slot="body" slot-scope="props" :props="props" class="text-center">
             <q-td key="id" class="text-center">{{ props.row.id }}</q-td>

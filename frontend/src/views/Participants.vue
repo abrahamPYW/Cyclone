@@ -170,7 +170,7 @@ export default {
     },
     Info(Participant) {
       this.$root.$emit("Info", Participant)
-    } 
+    }
   },
   created() {
     this.form_Default();
